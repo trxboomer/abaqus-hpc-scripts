@@ -1,11 +1,12 @@
+import os
 from abaqus import *
 
-
-def submit_input_file(filename: str, input_path: str, output_path: str, numCpus: int):
-    file_path = f"{input_path}/{filename}"
-    scratch_dir = f"{input_path}/scratch/{filename[:-4]}"
-
-    os.makedirs(scratch_dir)
+def submit_input_file(filename, input_path, output_path, numCpus):
+    file_path = input_path+ "\\" + filename
+    scratch_dir = input_path+"\\scratch\\"+filename[:-4]
+    
+    if not os.path.isdir(scratch_dir):
+        os.makedirs(scratch_dir)
 
     os.chdir(output_path)
 
@@ -18,5 +19,7 @@ def submit_input_file(filename: str, input_path: str, output_path: str, numCpus:
 
     job.submit()
     job.waitForCompletion()
+    
+    os.rmdir(scratch_dir)
 
     return

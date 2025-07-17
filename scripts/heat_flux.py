@@ -38,3 +38,11 @@ def main(input_path: str, output_path: str, numcpu: int):
             output_types=["HFL"],
             node_sets=["ALL NODES"],
         )
+
+
+if __name__ == "__main__":
+    main(
+        input_path=r"Y:\Students\Zhou_Harry\abaqus",
+        output_path=r"Y:\Students\Zhou_Harry\abaqus\test",
+        numcpu= 1
+    )
